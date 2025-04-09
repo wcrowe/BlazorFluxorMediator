@@ -1,6 +1,9 @@
-﻿namespace BlazorMediatRFluxor.Controllers;
+﻿
 
-using BlazorMediatRFluxor.Shared.Features.Weather.Queries; // Use shared Query
+
+
+using BlazorMediatRFluxor.Shared;
+using BlazorMediatRFluxor.Shared.Features.Weather.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

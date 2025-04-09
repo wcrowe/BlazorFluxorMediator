@@ -1,4 +1,5 @@
 using BlazorMediatRFluxor.Shared;
+using BlazorMediatRFluxor.Shared.Features.Weather.Queries;
 using MediatR; // Required namespace
     using System;
     using System.Collections.Generic;
