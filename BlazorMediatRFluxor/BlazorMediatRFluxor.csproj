@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluxor" Version="6.6.0" />
-    <PackageReference Include="Fluxor.Blazor.Web" Version="6.6.0" />
-    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="6.6.0" />
-    <PackageReference Include="MediatR" Version="12.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\BlazorMediatRFluxor.Client\BlazorMediatRFluxor.Client.csproj" />
     <ProjectReference Include="..\BlazorMediatRFluxor.Shared\BlazorMediatRFluxor.Shared.csproj" />
   </ItemGroup>
 
