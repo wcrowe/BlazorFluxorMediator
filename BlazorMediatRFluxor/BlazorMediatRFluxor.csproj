@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.15" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlazorMediatRFluxor.Client\BlazorMediatRFluxor.Client.csproj" />
     <ProjectReference Include="..\BlazorMediatRFluxor.Shared\BlazorMediatRFluxor.Shared.csproj" />
   </ItemGroup>

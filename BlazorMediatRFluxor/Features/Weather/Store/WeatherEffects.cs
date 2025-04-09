@@ -2,9 +2,11 @@
     using MediatR; // Required namespace
     using System;
     using System.Threading.Tasks;
-    using BlazorMediatRFluxor.Features.Weather.Queries; // Import the MediatR query
+    using BlazorMediatRFluxor.Features.Weather.Queries;
+using BlazorMediatRFluxor.Shared.Features.Weather.Store;
+using BlazorMediatRFluxor.Shared.Features.Weather.Queries; // Import the MediatR query
 
-    namespace BlazorMediatRFluxor.Features.Weather.Store;
+namespace BlazorMediatRFluxor.Features.Weather.Store;
 
     // Handles side effects, like API calls, triggered by actions
     public class WeatherEffects
