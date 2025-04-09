@@ -1,10 +1,34 @@
+using System.Reflection;
 using BlazorMediatRFluxor.Components;
+using Fluxor;
+using Fluxor.Blazor.Web.ReduxDevTools; // <-- Add Fluxor namespace using System.Reflection; // <-- Add Reflection namespace
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+    .AddInteractiveServerComponents(); // Make sure you have interactivity enabled
+
+// --- MediatR Configuration ---
+// Scans the assembly containing this Program class for MediatR handlers (IRequestHandler, INotificationHandler) 
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+// --- Fluxor Configuration ---
+builder.Services.AddFluxor(options =>
+{
+    // Scan the assembly containing this Program class for Fluxor features, reducers, effects
+    options.ScanAssemblies(Assembly.GetExecutingAssembly());
+
+#if DEBUG
+    // Enable Redux DevTools integration (install the browser extension)
+    options.UseReduxDevTools(devToolsOptions =>
+    {
+        devToolsOptions.Name = "Blazor MediatR Fluxor App";
+    });
+#endif
+});
+
 
 var app = builder.Build();
 
@@ -12,12 +36,10 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 app.UseAntiforgery();
 
