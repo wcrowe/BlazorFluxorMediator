@@ -12,13 +12,13 @@ builder.Services.AddRazorComponents()
 // --- MediatR Configuration ---
 // Scans the assembly containing this Program class for MediatR handlers (IRequestHandler, INotificationHandler) 
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 // --- Fluxor Configuration ---
 builder.Services.AddFluxor(options =>
 {
     // Scan the assembly containing this Program class for Fluxor features, reducers, effects
-    options.ScanAssemblies(Assembly.GetExecutingAssembly());
+    options.ScanAssemblies(typeof(Program).Assembly);
 
 #if DEBUG
     // Enable Redux DevTools integration (install the browser extension)

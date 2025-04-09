@@ -1,19 +1,33 @@
 ﻿@page "/weather"
-@attribute [StreamRendering]
+@rendermode InteractiveServer // Ensure component runs interactively
+
+@using BlazorMediatRFluxor.Features.Weather.Store // Using for Actions and State @using Fluxor // Using for IDispatcher, IState @using Fluxor.Blazor.Web.Components // Using for FluxorComponent
+
+@inherits FluxorComponent // Inherit from FluxorComponent for automatic state subscription management
+
+@inject IState<WeatherState> WeatherState // Inject the specific state slice @inject IDispatcher Dispatcher // Inject the dispatcher to send actions
+@inject IDispatcher Dispatcher
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<h1>Weather Forecast (Fluxor + MediatR)</h1>
 
-<p>This component demonstrates showing data.</p>
+<p>This component demonstrates fetching data using Fluxor for state management and MediatR for handling the fetch logic.</p>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
+<button class="btn btn-primary" @onclick="FetchData" disabled="@WeatherState.Value.IsLoading">
+    @if (WeatherState.Value.IsLoading)
+    {
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span> Loading...</span>
+    }
+    else
+    {
+        <span>Fetch Weather</span>
+    }
+</button>
+
+@if (WeatherState.Value.Forecasts is not null && !WeatherState.Value.IsLoading) {
+    <table class="table mt-3">
         <thead>
             <tr>
                 <th>Date</th>
@@ -23,7 +37,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in WeatherState.Value.Forecasts)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -35,30 +49,25 @@ else
         </tbody>
     </table>
 }
+else if (!string.IsNullOrEmpty(WeatherState.Value.ErrorMessage))
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        <strong>Error:</strong> @WeatherState.Value.ErrorMessage
+    </div>
+}
+else if (!WeatherState.Value.IsLoading)
+{
+     <p class="mt-3"><em>Click the button to load weather data.</em></p> }
+
 
 @code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
+    private void FetchData()
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+        // Dispatch the action that the Effect is listening for
+        Dispatcher.Dispatch(new FetchWeatherAction());
     }
 
-    private class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+    // No need for OnInitializedAsync or Dispose methods to manage state subscriptions
+    // because we are inheriting from FluxorComponent. It handles subscribing
+    // and unsubscribing automatically based on IState<T> injections.
 }
