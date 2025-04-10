@@ -15,6 +15,10 @@ public class WeatherEffects
     {
         _httpClient = httpClient;
         _logger = logger;
+        if(_httpClient.BaseAddress == null)
+        {
+            _httpClient.BaseAddress = new Uri("https://localhost:7273");
+        }
     }
 
     [EffectMethod]
