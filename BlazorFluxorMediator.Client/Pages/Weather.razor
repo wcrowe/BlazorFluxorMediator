@@ -1,18 +1,19 @@
 ﻿@page "/weather"
-@rendermode InteractiveServer // Ensure component runs interactively
+@* @rendermode @(new InteractiveWebAssemblyRenderMode(false))
+@* @rendermode InteractiveServer // Ensure component runs interactively *@
 
-@inherits FluxorComponent // Inherit from FluxorComponent for automatic state subscription management
+@* @inherits FluxorComponent // Inherit from FluxorComponent for automatic state subscription management
 
 @inject IState<WeatherState> WeatherState // Inject the specific state slice @inject IDispatcher Dispatcher // Inject the dispatcher to send actions
 @inject IDispatcher Dispatcher
-@inject ILogger<Weather> logger;
+@inject ILogger<Weather> logger; *@ 
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather Forecast (Fluxor + MediatR)</h1>
 
 <p>This component demonstrates fetching data using Fluxor for state management and MediatR for handling the fetch logic.</p>
 
-<button class="btn btn-primary" @onclick="FetchData" disabled="@WeatherState.Value.IsLoading">
+@* <button class="btn btn-primary" @onclick="FetchData" disabled="@WeatherState.Value.IsLoading">
     @if (WeatherState.Value.IsLoading)
     {
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -70,3 +71,4 @@ else if (!WeatherState.Value.IsLoading)
     // because we are inheriting from FluxorComponent. It handles subscribing
     // and unsubscribing automatically based on IState<T> injections.
 }
+ *@

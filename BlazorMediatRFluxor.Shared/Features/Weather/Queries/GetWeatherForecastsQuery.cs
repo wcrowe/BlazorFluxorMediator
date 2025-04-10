@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BlazorMediatRFluxor.Shared;
 using MediatR; // Required namespace
 

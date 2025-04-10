@@ -1,4 +1,6 @@
-﻿namespace BlazorMediatRFluxor.Shared; // Namespace for the Shared project
+﻿using System;
+
+namespace BlazorMediatRFluxor.Shared; // Namespace for the Shared project
 
 // Using a 'record' provides value-based equality and immutability features, // which are often beneficial, especially when working with state management like Fluxor.
 // You could also use a 'class'.

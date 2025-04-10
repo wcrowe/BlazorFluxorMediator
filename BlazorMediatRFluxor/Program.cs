@@ -1,10 +1,10 @@
 using BlazorMediatRFluxor.Components;
 using Fluxor;
 using System.Reflection;
-using BlazorMediatRFluxor.Client; // Add reference to Client project's assembly name
 using BlazorMediatRFluxor.Shared.Features.Weather.Store;
 using Fluxor.Blazor.Web.ReduxDevTools; // For scanning shared Fluxor items; // <-- Add Fluxor namespace using System.Reflection; // <-- Add Reflection namespace
-
+using BlazorFluxorMediator.Client;
+using BlazorFluxorMediator.Client.Pages;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 
@@ -13,7 +13,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddInteractiveWebAssemblyComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
 builder.Services.AddControllers(); // <-- Add API controller services
 
@@ -27,6 +28,7 @@ builder.Services.AddFluxor(options =>
 {
     // Scan the assembly containing this Program class for Fluxor features, reducers, effects
     options.ScanAssemblies(typeof(WeatherState).Assembly);
+    options.ScanAssemblies(Assembly.GetExecutingAssembly());    
 
 #if DEBUG
     // Enable Redux DevTools integration (install the browser extension)
@@ -36,8 +38,8 @@ builder.Services.AddFluxor(options =>
     });
 #endif
 });
-builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddAuthorization();
+//builder.Services.AddCascadingAuthenticationState();
+//builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -63,7 +65,7 @@ app.MapRazorComponents<App>()
         // Map requests to the Client project's entry point (_framework/blazor.webassembly.js)
         .AddInteractiveWebAssemblyRenderMode()
         // Tell the server where to find the WASM files
-        .AddAdditionalAssemblies(typeof(BlazorMediatRFluxor.Client.).Assembly); // Use a type from Client proj
+        .AddAdditionalAssemblies(typeof(BlazorFluxorMediator.Client._Imports).Assembly); // Use a type from Client proj
 app.MapControllers(); // <-- Map API controller routes
 
 app.Run();
