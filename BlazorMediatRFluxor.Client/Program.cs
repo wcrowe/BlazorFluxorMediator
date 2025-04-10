@@ -8,8 +8,8 @@ using BlazorMediatRFluxor.Client.Features.Weather.Store;
 using Fluxor.Blazor.Web.ReduxDevTools; // For scanning client effects
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
+//builder.RootComponents.Add<App>("#app");
+//builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

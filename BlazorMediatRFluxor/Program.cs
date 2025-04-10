@@ -14,6 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddControllers(); // <-- Add API controller services
+
 // --- MediatR Configuration ---
 // Scans the assembly containing this Program class for MediatR handlers (IRequestHandler, INotificationHandler) 
 builder.Services.AddMediatR(cfg =>
