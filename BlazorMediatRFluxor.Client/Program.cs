@@ -1,6 +1,6 @@
 using System.Reflection;
-using BlazorFluxorMediator.Client;
-using BlazorFluxorMediator.Client.Features.Weather.Store;
+using BlazorMediatRFluxor.Client;
+using BlazorMediatRFluxor.Client.Features.Weather.Store;
 using BlazorMediatRFluxor.Shared.Features.Weather.Store;
 using Fluxor;
 

@@ -3,7 +3,7 @@ using BlazorMediatRFluxor.Shared;
 using Fluxor;
 using System.Net.Http.Json;
 
-namespace BlazorFluxorMediator.Client.Features.Weather.Store;
+namespace BlazorMediatRFluxor.Client.Features.Weather.Store;
 
 public class WeatherEffects
 {
