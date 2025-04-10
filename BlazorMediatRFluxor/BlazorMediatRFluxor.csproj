@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorMediatRFluxor.Client\BlazorMediatRFluxor.Client.csproj" />
-    <ProjectReference Include="..\BlazorMediatRFluxor.Shared\BlazorMediatRFluxor.Shared.csproj" />
   </ItemGroup>
 
 </Project>

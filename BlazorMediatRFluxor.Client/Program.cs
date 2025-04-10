@@ -19,7 +19,7 @@ builder.Services.AddFluxor(options =>
     // Scan Shared assembly for Features, Reducers
     options.ScanAssemblies(typeof(WeatherState).Assembly);
     // Scan Client assembly for Effects
-    options.ScanAssemblies(Assembly.GetExecutingAssembly());
+    options.ScanAssemblies(typeof(Program).Assembly);
 
 #if DEBUG
     options.UseReduxDevTools(devToolsOptions =>

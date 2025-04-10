@@ -5,8 +5,8 @@ using BlazorMediatRFluxor.Client; // Add reference to Client project's assembly 
 using BlazorMediatRFluxor.Shared.Features.Weather.Store;
 using Fluxor.Blazor.Web.ReduxDevTools; // For scanning shared Fluxor items; // <-- Add Fluxor namespace using System.Reflection; // <-- Add Reflection namespace
 
-
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
 
 
 
@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddInteractiveWebAssemblyComponents();
-
+builder.Services.AddHttpClient();
 builder.Services.AddControllers(); // <-- Add API controller services
 
 // --- MediatR Configuration ---
@@ -52,6 +52,8 @@ else
 }
 
 app.UseHttpsRedirection();
+app.MapControllers(); // <-- Map API controller routes
+
 app.UseStaticFiles();
 app.UseAntiforgery();
 
@@ -62,6 +64,5 @@ app.MapRazorComponents<BlazorMediatRFluxor.Components.App>()
         // Tell the server where to find the WASM files
         .AddAdditionalAssemblies(typeof(BlazorMediatRFluxor.Client._Imports).Assembly); // Use a type from Client proj
 
-app.MapControllers(); // <-- Map API controller routes
 
 app.Run();

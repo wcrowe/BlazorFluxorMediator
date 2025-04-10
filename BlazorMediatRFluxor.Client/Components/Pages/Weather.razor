@@ -1,10 +1,11 @@
 ﻿@page "/weather"
-
+@rendermode InteractiveWebAssembly
 @inherits FluxorComponent // Inherit from FluxorComponent for automatic state subscription management
 
 @inject IState<WeatherState> WeatherState // Inject the specific state slice @inject IDispatcher Dispatcher // Inject the dispatcher to send actions
 @inject IDispatcher Dispatcher
 @inject ILogger<Weather> logger;
+@inject HttpClient Http
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather Forecast (Fluxor + MediatR)</h1>
