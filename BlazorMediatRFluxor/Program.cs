@@ -36,7 +36,8 @@ builder.Services.AddFluxor(options =>
     });
 #endif
 });
-
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -52,17 +53,17 @@ else
 }
 
 app.UseHttpsRedirection();
-app.MapControllers(); // <-- Map API controller routes
+
 
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<BlazorMediatRFluxor.Components.App>()
+app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
         // Map requests to the Client project's entry point (_framework/blazor.webassembly.js)
         .AddInteractiveWebAssemblyRenderMode()
         // Tell the server where to find the WASM files
         .AddAdditionalAssemblies(typeof(BlazorMediatRFluxor.Client._Imports).Assembly); // Use a type from Client proj
-
+app.MapControllers(); // <-- Map API controller routes
 
 app.Run();

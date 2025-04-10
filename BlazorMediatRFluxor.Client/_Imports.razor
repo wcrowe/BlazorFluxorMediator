@@ -1,21 +1,25 @@
-﻿@using System.Net.Http
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components.Forms
-@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-@using Microsoft.AspNetCore.Components.WebAssembly.Http
-@using Microsoft.JSInterop
-@using BlazorMediatRFluxor.Client
+﻿@using System.Net.Http;
+@using System.Net.Http.Json;
+@using Microsoft.AspNetCore.Components.Forms;
+@using Microsoft.AspNetCore.Components.Routing;
+@using Microsoft.AspNetCore.Components.Web;
+@using Microsoft.AspNetCore.Components.Web.Virtualization;
+@using Microsoft.AspNetCore.Components.WebAssembly.Http;
+@using Microsoft.JSInterop;
+@using BlazorMediatRFluxor.Client;
+@using BlazorMediatRFluxor.Client.Components;
 @using static Microsoft.AspNetCore.Components.Web.RenderMode;
 
 
 @using Microsoft.AspNetCore.Components.WebAssembly;
-@using BlazorMediatRFluxor.Shared
-@using BlazorMediatRFluxor.Shared.Features.Weather
-@using BlazorMediatRFluxor.Shared.Features.Weather.Queries
-@using BlazorMediatRFluxor.Shared.Features.Weather.Store
-@using MediatR
+@using BlazorMediatRFluxor.Shared;
+@using BlazorMediatRFluxor.Shared.Features.Weather;
+@using BlazorMediatRFluxor.Shared.Features.Weather.Queries;
+@using BlazorMediatRFluxor.Shared.Features.Weather.Store;
+@using BlazorMediatRFluxor.Client.Features.Weather.Store;
 
-@using Fluxor
-@using Fluxor.Blazor.Web.Components
+@using MediatR;
+
+@using Fluxor;
+@using Fluxor.Blazor.Web.Components;
+@using Microsoft.AspNetCore.Authorization;

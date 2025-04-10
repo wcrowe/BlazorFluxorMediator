@@ -5,3 +5,30 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+@code {
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         hub.InitHub();
+    //         if (hub.hubConnection != null)
+    //         {
+    //             await hub.ConnectAsync();
+    //             await InvokeAsync(StateHasChanged);
+    //         }
+    //     }
+    // }
+
+    // private async Task ReceiveRandomMessage()
+    // {
+    //     if (hub.IsConnected)
+    //     {
+    //         await hub.ReceiveRandomMessage();
+    //         await InvokeAsync(StateHasChanged);
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Hub is not connected yet.");
+    //     }
+    // }
+}

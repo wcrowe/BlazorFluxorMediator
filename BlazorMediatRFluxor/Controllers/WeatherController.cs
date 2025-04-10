@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlazorMediatRFluxor.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] // Route: /api/weather
+[Route("/api/[controller]")] // Route: /api/weather
 public class WeatherController : ControllerBase
 {
     private readonly IMediator _mediator;
