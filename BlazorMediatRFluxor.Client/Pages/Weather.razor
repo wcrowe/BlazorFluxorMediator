@@ -1,8 +1,11 @@
 ﻿@page "/weather"
 
-@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+@rendermode InteractiveWebAssembly
 <Fluxor.Blazor.Web.StoreInitializer />
 
+@* @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+<Fluxor.Blazor.Web.StoreInitializer />
+ *@
 
 
 
