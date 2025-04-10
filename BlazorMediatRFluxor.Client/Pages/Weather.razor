@@ -1,5 +1,12 @@
 ﻿@page "/weather"
-@rendermode @(new InteractiveWebAssemblyRenderMode(false))
+
+@* @rendermode @(new InteractiveWebAssemblyRenderMode(false)) *@
+    @using BlazorMediatRFluxor.Shared.Features.Weather.Store // Use Shared state/actions
+    @using BlazorMediatRFluxor.Shared // USe shared WeatherForecast model
+    @using Fluxor // Using for IDispatcher, IState
+    @using Fluxor.Blazor.Web.Components // Using for FluxorComponent
+
+
 @inherits FluxorComponent // Inherit from FluxorComponent for automatic state subscription management
 
 @inject IState<WeatherState> WeatherState // Inject the specific state slice @inject IDispatcher Dispatcher // Inject the dispatcher to send actions
@@ -7,7 +14,6 @@
 @inject ILogger<Weather> logger;
 @inject HttpClient Http
 @* @attribute [Authorize] *@
-<PageTitle>Weather</PageTitle>
 
 <h1>Weather Forecast (Fluxor + MediatR)</h1>
 
