@@ -1,4 +1,9 @@
 ﻿@page "/weather"
+
+
+
+
+
 @* @rendermode @(new InteractiveWebAssemblyRenderMode(false))
 @* @rendermode InteractiveServer // Ensure component runs interactively *@
 @* @rendermode InteractiveAuto *@
@@ -6,7 +11,7 @@
 
 @inject IState<WeatherState> WeatherState // Inject the specific state slice @inject IDispatcher Dispatcher // Inject the dispatcher to send actions
 @inject IDispatcher Dispatcher
-@inject ILogger<Weather> logger; 
+@inject ILogger<Weather> logger
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather Forecast (Fluxor + MediatR)</h1>
