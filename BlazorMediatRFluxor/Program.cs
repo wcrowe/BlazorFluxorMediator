@@ -6,6 +6,7 @@ using Fluxor.Blazor.Web.ReduxDevTools; // For scanning shared Fluxor items; // <
 using BlazorFluxorMediator.Client;
 using BlazorFluxorMediator.Client.Pages;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components;
 
 
 
@@ -17,7 +18,11 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
 builder.Services.AddControllers(); // <-- Add API controller services
-
+builder.Services.AddScoped(sp =>
+{
+    NavigationManager navigation = sp.GetRequiredService<NavigationManager>();
+    return new HttpClient { BaseAddress = new Uri(navigation.BaseUri) };
+});
 // --- MediatR Configuration ---
 // Scans the assembly containing this Program class for MediatR handlers (IRequestHandler, INotificationHandler) 
 builder.Services.AddMediatR(cfg =>
