@@ -67,6 +67,18 @@ else if (!WeatherState.Value.IsLoading)
         logger.LogDebug("After dispatcth");
     }
 
+    private bool _initialized = false; // ✅ Prevents duplicate calls
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !_initialized)
+        {
+            _initialized = true; // ✅ Ensures data loads only once
+
+           // StateHasChanged(); // ✅ Forces UI refresh
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
     // No need for OnInitializedAsync or Dispose methods to manage state subscriptions
     // because we are inheriting from FluxorComponent. It handles subscribing
     // and unsubscribing automatically based on IState<T> injections.
