@@ -4,7 +4,7 @@ using System.Reflection;
 using BlazorMediatRFluxor.Shared.Features.Weather.Store;
 using Fluxor.Blazor.Web.ReduxDevTools; // For scanning shared Fluxor items; // <-- Add Fluxor namespace using System.Reflection; // <-- Add Reflection namespace
 using BlazorFluxorMediator.Client;
-using BlazorFluxorMediator.Client.Pages;
+
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Components;
 
