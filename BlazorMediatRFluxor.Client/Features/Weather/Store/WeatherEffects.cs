@@ -17,8 +17,8 @@ public class WeatherEffects
         _logger = logger;
     }
 
-    [EffectMethod]
-    public async Task HandleFetchWeatherAction(FetchWeatherAction action, IDispatcher dispatcher)
+    [EffectMethod(typeof(FetchWeatherAction))]
+    public async Task HandleFetchWeatherAction(IDispatcher dispatcher)
     {
         _logger.LogInformation("Handling FetchWeatherAction effect (WASM)...");
         try
