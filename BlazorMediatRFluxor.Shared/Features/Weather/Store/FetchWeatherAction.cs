@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using BlazorMediatRFluxor.Shared;
 
 namespace BlazorMediatRFluxor.Shared.Features.Weather.Store;
 

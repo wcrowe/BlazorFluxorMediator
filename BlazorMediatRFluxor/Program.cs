@@ -37,6 +37,7 @@ builder.Services.AddFluxor(options =>
     // Scan the assembly containing this Program class for Fluxor features, reducers, effects
     options.ScanAssemblies(typeof(WeatherState).Assembly);
     options.ScanAssemblies(typeof(CounterState).Assembly);
+    options.ScanAssemblies(typeof(CounterReducers).Assembly);
     options.ScanAssemblies(typeof(BlazorMediatRFluxor.Shared.WeatherForecast).Assembly);
     options.ScanAssemblies(Assembly.GetExecutingAssembly()); 
     options.ScanAssemblies(typeof(WeatherEffects).Assembly);

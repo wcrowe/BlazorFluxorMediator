@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fluxor;
+﻿using Fluxor;
 
 namespace BlazorMediatRFluxor.Shared.Features.Counter;
 
@@ -15,5 +10,10 @@ public static class CounterReducers
         // Return a *new* state instance with the updated value
         return state with { CurrentCount = state.CurrentCount + 1 };
     }
+
+
+    //[ReducerMethod]
+    //public static CounterState ReduceIncrementCounterAction(CounterState state, IncrementCounterAction action) =>
+    //new CounterState(currentCount: state.CurrentCount + 1);
 
 }
